@@ -16,6 +16,7 @@ from src.utils import save_object
 @dataclass
 class DataTransformationConfig:
     preprocessor_obj_file:str = os.path.join("artifacts", "preprocessor.pkl")
+    Lable_encoder_file:str = os.path.join("artifacts", "label_encoder.pkl")
 
 class DataTransformation:
     def __init__(self):
@@ -85,15 +86,25 @@ class DataTransformation:
 
             logging.info("saved Preprocessing Object")
 
+            print("Preprocessor file path:", self.data_transformer_config.preprocessor_obj_file)
+            print("Label encoder file path:", self.data_transformer_config.Lable_encoder_file)
+
+
             save_object(
                 file_path=self.data_transformer_config.preprocessor_obj_file,
                 obj = preprocessing_obj
             )
 
+            save_object(
+                file_path=self.data_transformer_config.Lable_encoder_file,
+                obj = label_encoder
+            )
+
             return(
                 train_arr,
                 test_arr,
-                self.data_transformer_config.preprocessor_obj_file
+                self.data_transformer_config.preprocessor_obj_file,
+                self.data_transformer_config.Lable_encoder_file
             )
 
         except Exception as e:
