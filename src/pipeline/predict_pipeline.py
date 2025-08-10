@@ -6,7 +6,7 @@ from src.exception import CustomException
 from src.utils import load_object
 
 class predictPipeline:
-    def __init__(self):
+    def __init__(self): 
         pass
 
     def predict(self, Dataframe):

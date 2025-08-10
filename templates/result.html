@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
+            padding-top: 100px;
+        }
+        .box {
+            background-color: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        h1 {
+            color: #8bc34a;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #8bc34a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a:hover {
+            background: #689f38;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🌱 Recommended Crop: <strong>{{ crop }}</strong></h1>
+        <a href="{{ url_for('prediction') }}">Predict Again</a>
+    </div>
+</body>
+</html>

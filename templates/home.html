@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Farmer Crop Yield Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: rgba(255, 248, 231, 0.9);
+            padding: 40px 60px;
+            border-radius: 15px;
+            width: 600px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border: 2px solid #d4a373;
+        }
+
+        h1, legend {
+            text-align: center;
+            color: #3e4e1f;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3e4e1f;
+        }
+
+        .form-control, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border: 1px solid #8bc34a;
+            outline: none;
+            box-shadow: 0 0 10px rgba(139, 195, 74, 0.4);
+        }
+
+        .btn {
+            background-color: #8bc34a;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #689f38;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 20px;
+            color: #3e4e1f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>🌾 Crop Yield Predictor 🌾</h1>
+    <form action="{{ url_for('prediction') }}" method="post">
+        <legend>Enter Crop Details</legend>
+
+        <label>Nitrogen (0-140)</label>
+        <input class="form-control" type="number" name="N" min="0" max="140" placeholder="Enter Nitrogen value" required>
+
+        <label>Phosphorus (5-145)</label>
+        <input class="form-control" type="number" name="P" min="5" max="145" placeholder="Enter Phosphorus value" required>
+
+        <label>Potassium (5-205)</label>
+        <input class="form-control" type="number" name="K" min="5" max="205" placeholder="Enter Potassium value" required>
+
+        <label>Temperature (max - 43.6 °C)</label>
+        <input class="form-control" type="number" step="0.01" name="temperature"  max="43.67" placeholder="Enter Temperature" required>
+
+        <label>Humidity (max - 99.98 %)</label>
+        <input class="form-control" type="number" step="0.1" name="humidity" min="0" max="99.98" placeholder="Enter Humidity" required>
+
+        <label>pH (0 to 14)</label>
+        <input class="form-control" type="number" step="0.1" name="ph" min="0" max="14" placeholder="Enter pH value" required>
+
+        <label>Rainfall (max-298.56 mm)</label>
+        <input class="form-control" type="number" step="0.1" name="rainfall" min="20.21" max="298.56" placeholder="Enter Rainfall" required>
+
+        <input class="btn" type="submit" value="Predict Crop">
+    </form>
+
+    {% if result %}
+    <h2>🌱 The recommended crop is: <strong>{{ result }}</strong></h2>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
